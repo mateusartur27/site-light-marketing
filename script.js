@@ -268,13 +268,3 @@ document.querySelectorAll('.file-upload').forEach(upload => {
         }
     });
 });
-
-// Add parallax effect to hero image
-window.addEventListener('scroll', function() {
-    const scrolled = window.pageYOffset;
-    const heroImage = document.querySelector('.hero-image');
-    
-    if (heroImage && scrolled < window.innerHeight) {
-        heroImage.style.transform = `translateY(${scrolled * 0.3}px)`;
-    }
-});
