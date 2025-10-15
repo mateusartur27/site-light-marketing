@@ -211,8 +211,8 @@ window.addEventListener('scroll', function() {
 // Efeito de digitação no título
 const typingText = document.querySelector('.typing-text');
 if (typingText) {
-    const normalText = 'Formatador de Etiquetas ';
-    const highlightText = 'Shopee';
+    const normalText = 'Lorem Ipsum Dolor ';
+    const highlightText = 'Sit Amet';
     let i = 0;
     let j = 0;
     let highlightSpan = null;
@@ -223,7 +223,7 @@ if (typingText) {
             i++;
             setTimeout(typeWriter, 80);
         } else if (j < highlightText.length) {
-            // Criar o span na primeira letra de "Shopee"
+            // Criar o span na primeira letra de "Sit Amet"
             if (j === 0) {
                 highlightSpan = document.createElement('span');
                 highlightSpan.className = 'highlight';
