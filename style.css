@@ -6,7 +6,7 @@
 
 html {
     scroll-behavior: smooth;
-    scroll-padding-top: 80px;
+    scroll-padding-top: 60px;
     -webkit-text-size-adjust: 100%;
     -ms-text-size-adjust: 100%;
 }
@@ -145,14 +145,28 @@ body {
     transform: rotate(-45deg) translate(7px, -7px);
 }
 
-/* Menu Overlay - Oculto em mobile pois o menu é fullscreen */
+/* Menu Overlay - Aparece quando menu está aberto */
 .menu-overlay {
     display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 998;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.menu-overlay.active {
+    display: block;
+    opacity: 1;
 }
 
 @media (min-width: 769px) {
     .menu-overlay {
-        display: none;
+        display: none !important;
     }
 }
 
@@ -178,7 +192,6 @@ body.menu-open {
 /* Hero Left */
 .hero-left {
     animation: fadeInLeft 0.8s ease;
-    will-change: transform, opacity;
 }
 
 .hero-image {
@@ -209,7 +222,6 @@ body.menu-open {
     z-index: 1;
     filter: drop-shadow(0 0 10px rgba(12, 126, 146, 0.3));
     animation: float 6s ease-in-out infinite;
-    will-change: transform;
 }
 
 .hero-title {
@@ -296,9 +308,6 @@ body.menu-open {
 /* Hero Right - Tool Card */
 .hero-right {
     animation: fadeInRight 0.8s ease;
-    position: sticky;
-    top: 100px;
-    will-change: transform, opacity;
 }
 
 .tool-card {
@@ -529,21 +538,25 @@ body.menu-open {
     text-align: center;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
-    opacity: 0;
+    opacity: 1;
+}
+
+/* Animação desabilitada para melhor performance */
+/* .step.animated {
     animation: fadeInUp 0.6s ease forwards;
 }
 
-.step:nth-child(1) {
+.step.animated:nth-child(1) {
     animation-delay: 0.1s;
 }
 
-.step:nth-child(2) {
+.step.animated:nth-child(2) {
     animation-delay: 0.2s;
 }
 
-.step:nth-child(3) {
+.step.animated:nth-child(3) {
     animation-delay: 0.3s;
-}
+} */
 
 .step:hover {
     transform: translateY(-10px);
@@ -743,27 +756,26 @@ body.menu-open {
     
     .nav {
         position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
+        top: 77px;
+        right: -100%;
         bottom: 0;
-        width: 100%;
-        height: 100vh;
+        width: 80%;
+        max-width: 400px;
+        height: calc(100vh - 77px);
         background: rgba(0, 0, 0, 0.98);
         flex-direction: column;
         justify-content: center;
         align-items: center;
         padding: 60px 20px;
         gap: 30px;
-        opacity: 0;
-        visibility: hidden;
-        transition: opacity 0.3s ease, visibility 0.3s ease;
+        transition: right 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
         z-index: 999;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.5);
+        border-left: 1px solid rgba(12, 126, 146, 0.2);
     }
     
     .nav.active {
-        opacity: 1;
-        visibility: visible;
+        right: 0;
     }
     
     .nav a {

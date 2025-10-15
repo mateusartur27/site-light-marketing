@@ -1,48 +1,43 @@
 // Menu hambúrguer toggle
-// Versão: 4.0 - Fullscreen mobile menu
+// Versão: 5.0 - Slide from right
 const menuToggle = document.querySelector('.menu-toggle');
 const nav = document.querySelector('.nav');
+
+// Criar overlay para o menu mobile
+let menuOverlay = document.querySelector('.menu-overlay');
+if (!menuOverlay) {
+    menuOverlay = document.createElement('div');
+    menuOverlay.className = 'menu-overlay';
+    document.body.appendChild(menuOverlay);
+}
 
 menuToggle.addEventListener('click', () => {
     menuToggle.classList.toggle('active');
     nav.classList.toggle('active');
+    menuOverlay.classList.toggle('active');
     document.body.classList.toggle('menu-open');
+});
+
+// Fechar menu ao clicar no overlay
+menuOverlay.addEventListener('click', () => {
+    menuToggle.classList.remove('active');
+    nav.classList.remove('active');
+    menuOverlay.classList.remove('active');
+    document.body.classList.remove('menu-open');
 });
 
 // Fechar menu ao clicar em um link
 const navLinks = document.querySelectorAll('.nav a');
 navLinks.forEach(link => {
     link.addEventListener('click', (e) => {
-        e.preventDefault();
-        
         // Fechar menu
         menuToggle.classList.remove('active');
         nav.classList.remove('active');
+        menuOverlay.classList.remove('active');
         document.body.classList.remove('menu-open');
         
-        // Smooth scroll para a seção
-        const targetId = link.getAttribute('href');
-        const targetSection = document.querySelector(targetId);
-        
-        if (targetSection) {
-            // Ajustar offset baseado na seção
-            let headerOffset = 80;
-            
-            // Para o footer, usar offset menor
-            if (targetId === '#contato') {
-                headerOffset = 20;
-            }
-            
-            setTimeout(() => {
-                const elementPosition = targetSection.getBoundingClientRect().top;
-                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-                window.scrollTo({
-                    top: offsetPosition,
-                    behavior: 'smooth'
-                });
-            }, 300);
-        }
+        // Deixar o navegador fazer o scroll nativo
+        // Não prevenir o comportamento padrão para usar CSS scroll-behavior
     });
 });
 
@@ -193,47 +188,25 @@ processBtn.addEventListener('click', function() {
     }, 200);
 });
 
-// Smooth scroll for navigation links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
-    });
-});
+// Add animation on scroll for steps - Desabilitado temporariamente para melhor performance
+// const observerOptions = {
+//     threshold: 0.15,
+//     rootMargin: '0px'
+// };
 
-// Add animation on scroll for steps
-const observerOptions = {
-    threshold: 0.2,
-    rootMargin: '0px 0px -100px 0px'
-};
+// const observer = new IntersectionObserver(function(entries) {
+//     entries.forEach(entry => {
+//         if (entry.isIntersecting && !entry.target.classList.contains('animated')) {
+//             entry.target.classList.add('animated');
+//             observer.unobserve(entry.target);
+//         }
+//     });
+// }, observerOptions);
 
-const observer = new IntersectionObserver(function(entries) {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '0';
-            entry.target.style.transform = 'translateY(50px)';
-            
-            setTimeout(() => {
-                entry.target.style.transition = 'all 0.6s ease';
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-            }, 100);
-            
-            observer.unobserve(entry.target);
-        }
-    });
-}, observerOptions);
-
-// Observe all steps
-document.querySelectorAll('.step').forEach(step => {
-    observer.observe(step);
-});
+// // Observe all steps
+// document.querySelectorAll('.step').forEach(step => {
+//     observer.observe(step);
+// });
 
 // Prevent default drag and drop on upload areas
 document.querySelectorAll('.file-upload').forEach(upload => {
