@@ -1,26 +1,12 @@
 // Menu hambúrguer toggle
-// Versão: 3.0 - Improved mobile menu
+// Versão: 4.0 - Fullscreen mobile menu
 const menuToggle = document.querySelector('.menu-toggle');
 const nav = document.querySelector('.nav');
-
-// Criar overlay para o menu mobile
-const menuOverlay = document.createElement('div');
-menuOverlay.className = 'menu-overlay';
-document.body.appendChild(menuOverlay);
 
 menuToggle.addEventListener('click', () => {
     menuToggle.classList.toggle('active');
     nav.classList.toggle('active');
-    menuOverlay.classList.toggle('active');
     document.body.classList.toggle('menu-open');
-});
-
-// Fechar menu ao clicar no overlay
-menuOverlay.addEventListener('click', () => {
-    menuToggle.classList.remove('active');
-    nav.classList.remove('active');
-    menuOverlay.classList.remove('active');
-    document.body.classList.remove('menu-open');
 });
 
 // Fechar menu ao clicar em um link
@@ -29,10 +15,9 @@ navLinks.forEach(link => {
     link.addEventListener('click', (e) => {
         e.preventDefault();
         
-        // Fechar menu com delay para suavizar
+        // Fechar menu
         menuToggle.classList.remove('active');
         nav.classList.remove('active');
-        menuOverlay.classList.remove('active');
         document.body.classList.remove('menu-open');
         
         // Smooth scroll para a seção
@@ -56,7 +41,7 @@ navLinks.forEach(link => {
                     top: offsetPosition,
                     behavior: 'smooth'
                 });
-            }, 100);
+            }, 300);
         }
     });
 });
