@@ -207,12 +207,15 @@ body {
 
 .hero-title .typing-text {
     display: inline;
+    --cursor-display: inline;
 }
 
 .hero-title .typing-text::after {
     content: '|';
     color: var(--primary-color);
     margin-left: 2px;
+    font-weight: 300;
+    display: var(--cursor-display);
     animation: blink 0.7s step-end infinite;
 }
 

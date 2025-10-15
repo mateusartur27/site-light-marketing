@@ -56,6 +56,12 @@ if (typingElement) {
             // Adicionar letra por letra dentro do span
             highlightSpan.textContent += highlightText.charAt(j);
             j++;
+            
+            // Se for a última letra, remover o cursor imediatamente
+            if (j === highlightText.length) {
+                typingElement.style.setProperty('--cursor-display', 'none');
+            }
+            
             setTimeout(typeWriter, 80);
         }
     }
