@@ -206,8 +206,9 @@ body {
 }
 
 .hero-title .typing-text {
-    display: inline;
+    display: inline-block;
     border-right: 2px solid var(--primary-color);
+    padding-right: 2px;
     animation: blink 0.7s step-end infinite;
 }
 
@@ -218,9 +219,8 @@ body {
 }
 
 .highlight {
-    color: var(--primary-color);
-    position: relative;
-    display: inline-block;
+    color: var(--primary-color) !important;
+    font-weight: 700;
 }
 
 .hero-subtitle {

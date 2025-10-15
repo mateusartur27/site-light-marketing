@@ -1,4 +1,5 @@
 // Menu hambúrguer toggle
+// Versão: 2.0 - Fixed typing effect
 const menuToggle = document.querySelector('.menu-toggle');
 const nav = document.querySelector('.nav');
 
