@@ -13,21 +13,33 @@ const navLinks = document.querySelectorAll('.nav a');
 navLinks.forEach(link => {
     link.addEventListener('click', (e) => {
         e.preventDefault();
-        menuToggle.classList.remove('active');
-        nav.classList.remove('active');
         
         // Smooth scroll para a seção
         const targetId = link.getAttribute('href');
         const targetSection = document.querySelector(targetId);
+        
+        // Fechar menu com delay para suavizar
+        menuToggle.classList.remove('active');
+        nav.classList.remove('active');
+        
         if (targetSection) {
-            const headerOffset = 80;
-            const elementPosition = targetSection.getBoundingClientRect().top;
-            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+            // Ajustar offset baseado na seção
+            let headerOffset = 80;
+            
+            // Para o footer, usar offset menor
+            if (targetId === '#contato') {
+                headerOffset = 20;
+            }
+            
+            setTimeout(() => {
+                const elementPosition = targetSection.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
-            window.scrollTo({
-                top: offsetPosition,
-                behavior: 'smooth'
-            });
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+            }, 100);
         }
     });
 });
