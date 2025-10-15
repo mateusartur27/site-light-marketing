@@ -161,7 +161,10 @@ body {
     line-height: 1.2;
     margin-bottom: 20px;
     text-align: center;
-    min-height: 60px;
+    min-height: 115px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .hero-title .typing-text {
@@ -456,8 +459,22 @@ body {
     border-radius: 20px;
     padding: 40px 30px;
     text-align: center;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
+    opacity: 0;
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+.step:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.step:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.step:nth-child(3) {
+    animation-delay: 0.3s;
 }
 
 .step:hover {
@@ -610,6 +627,17 @@ body {
     }
     50% {
         transform: translateY(-15px);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 
