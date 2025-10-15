@@ -141,6 +141,29 @@ body {
     transform: rotate(-45deg) translate(7px, -7px);
 }
 
+/* Menu Overlay */
+.menu-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 998;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.menu-overlay.active {
+    display: block;
+    opacity: 1;
+}
+
+body.menu-open {
+    overflow: hidden;
+}
+
 /* Hero Section */
 .hero {
     padding: 80px 0;
@@ -726,14 +749,16 @@ body {
         position: fixed;
         top: 77px;
         right: -100%;
-        width: 250px;
+        width: 70%;
+        max-width: 300px;
         height: calc(100vh - 77px);
         background: rgba(0, 0, 0, 0.98);
         flex-direction: column;
-        padding: 30px;
-        gap: 25px;
+        padding: 30px 20px;
+        gap: 20px;
         transition: right 0.3s ease;
         border-left: 1px solid rgba(12, 126, 146, 0.2);
+        z-index: 999;
     }
     
     .nav.active {
@@ -742,11 +767,17 @@ body {
     
     .nav a {
         font-size: 16px;
-        padding: 10px 0;
+        padding: 12px 0;
+        border-bottom: 1px solid rgba(12, 126, 146, 0.1);
+    }
+    
+    .nav a:last-child {
+        border-bottom: none;
     }
     
     .hero-title {
-        font-size: 36px;
+        font-size: 32px;
+        min-height: 100px;
     }
     
     .hero-subtitle {
