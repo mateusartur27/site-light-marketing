@@ -1,3 +1,36 @@
+// Menu hambúrguer toggle
+const menuToggle = document.querySelector('.menu-toggle');
+const nav = document.querySelector('.nav');
+
+menuToggle.addEventListener('click', () => {
+    menuToggle.classList.toggle('active');
+    nav.classList.toggle('active');
+});
+
+// Fechar menu ao clicar em um link
+const navLinks = document.querySelectorAll('.nav a');
+navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        menuToggle.classList.remove('active');
+        nav.classList.remove('active');
+    });
+});
+
+// Texto digitando
+const textToType = "Lorem Ipsum Dolor Sit Amet";
+const typingElement = document.querySelector('.typing-text');
+let charIndex = 0;
+
+function typeText() {
+    if (charIndex < textToType.length) {
+        typingElement.textContent += textToType.charAt(charIndex);
+        charIndex++;
+        setTimeout(typeText, 100);
+    }
+}
+
+typeText();
+
 // File input handlers
 const pdfInput = document.getElementById('pdf-file');
 const xlsxInput = document.getElementById('xlsx-file');

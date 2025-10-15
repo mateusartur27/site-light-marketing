@@ -103,6 +103,39 @@ body {
     width: 100%;
 }
 
+/* Menu Hambúrguer */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    z-index: 1001;
+}
+
+.menu-toggle span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background: var(--text-light);
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+.menu-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(8px, 8px);
+}
+
+.menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
+}
+
 /* Hero Section */
 .hero {
     padding: 80px 0;
@@ -668,12 +701,32 @@ body {
 }
 
 @media (max-width: 768px) {
+    /* Menu hambúrguer visível em tablets e celulares */
+    .menu-toggle {
+        display: flex;
+    }
+    
     .nav {
-        gap: 15px;
+        position: fixed;
+        top: 77px;
+        right: -100%;
+        width: 250px;
+        height: calc(100vh - 77px);
+        background: rgba(0, 0, 0, 0.98);
+        flex-direction: column;
+        padding: 30px;
+        gap: 25px;
+        transition: right 0.3s ease;
+        border-left: 1px solid rgba(12, 126, 146, 0.2);
+    }
+    
+    .nav.active {
+        right: 0;
     }
     
     .nav a {
-        font-size: 14px;
+        font-size: 16px;
+        padding: 10px 0;
     }
     
     .hero-title {
