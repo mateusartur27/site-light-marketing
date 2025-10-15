@@ -10,9 +10,24 @@ menuToggle.addEventListener('click', () => {
 // Fechar menu ao clicar em um link
 const navLinks = document.querySelectorAll('.nav a');
 navLinks.forEach(link => {
-    link.addEventListener('click', () => {
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
         menuToggle.classList.remove('active');
         nav.classList.remove('active');
+        
+        // Smooth scroll para a seção
+        const targetId = link.getAttribute('href');
+        const targetSection = document.querySelector(targetId);
+        if (targetSection) {
+            const headerOffset = 80;
+            const elementPosition = targetSection.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth'
+            });
+        }
     });
 });
 
