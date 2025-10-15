@@ -31,20 +31,36 @@ navLinks.forEach(link => {
     });
 });
 
-// Texto digitando
-const textToType = "Lorem Ipsum Dolor Sit Amet";
+// Efeito de digitação no título com destaque
 const typingElement = document.querySelector('.typing-text');
-let charIndex = 0;
-
-function typeText() {
-    if (charIndex < textToType.length) {
-        typingElement.textContent += textToType.charAt(charIndex);
-        charIndex++;
-        setTimeout(typeText, 100);
+if (typingElement) {
+    const normalText = 'Lorem Ipsum Dolor ';
+    const highlightText = 'Sit Amet';
+    let i = 0;
+    let j = 0;
+    let highlightSpan = null;
+    
+    function typeWriter() {
+        if (i < normalText.length) {
+            typingElement.textContent += normalText.charAt(i);
+            i++;
+            setTimeout(typeWriter, 80);
+        } else if (j < highlightText.length) {
+            // Criar o span na primeira letra de "Sit Amet"
+            if (j === 0) {
+                highlightSpan = document.createElement('span');
+                highlightSpan.className = 'highlight';
+                typingElement.appendChild(highlightSpan);
+            }
+            // Adicionar letra por letra dentro do span
+            highlightSpan.textContent += highlightText.charAt(j);
+            j++;
+            setTimeout(typeWriter, 80);
+        }
     }
+    
+    typeWriter();
 }
-
-typeText();
 
 // File input handlers
 const pdfInput = document.getElementById('pdf-file');
@@ -255,40 +271,3 @@ window.addEventListener('scroll', function() {
         heroImage.style.transform = `translateY(${scrolled * 0.3}px)`;
     }
 });
-
-// Efeito de digitação no título
-const typingText = document.querySelector('.typing-text');
-if (typingText) {
-    const normalText = 'Lorem Ipsum Dolor ';
-    const highlightText = 'Sit Amet';
-    let i = 0;
-    let j = 0;
-    let highlightSpan = null;
-    
-    function typeWriter() {
-        if (i < normalText.length) {
-            typingText.textContent += normalText.charAt(i);
-            i++;
-            setTimeout(typeWriter, 80);
-        } else if (j < highlightText.length) {
-            // Criar o span na primeira letra de "Sit Amet"
-            if (j === 0) {
-                highlightSpan = document.createElement('span');
-                highlightSpan.className = 'highlight';
-                typingText.appendChild(highlightSpan);
-            }
-            // Adicionar letra por letra dentro do span
-            highlightSpan.textContent += highlightText.charAt(j);
-            j++;
-            setTimeout(typeWriter, 80);
-        } else {
-            // Remover cursor piscante após terminar
-            setTimeout(() => {
-                typingText.style.borderRight = 'none';
-            }, 500);
-        }
-    }
-    
-    // Iniciar digitação após um pequeno delay
-    setTimeout(typeWriter, 300);
-}
