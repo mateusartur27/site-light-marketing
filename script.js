@@ -30,14 +30,32 @@ menuOverlay.addEventListener('click', () => {
 const navLinks = document.querySelectorAll('.nav a');
 navLinks.forEach(link => {
     link.addEventListener('click', (e) => {
+        e.preventDefault();
+        
         // Fechar menu
         menuToggle.classList.remove('active');
         nav.classList.remove('active');
         menuOverlay.classList.remove('active');
         document.body.classList.remove('menu-open');
         
-        // Deixar o navegador fazer o scroll nativo
-        // Não prevenir o comportamento padrão para usar CSS scroll-behavior
+        // Scroll sem focar no elemento (evita cursor de texto)
+        const targetId = link.getAttribute('href');
+        const targetSection = document.querySelector(targetId);
+        
+        if (targetSection) {
+            // Usar scrollIntoView sem causar focus
+            targetSection.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+            
+            // Remover focus do elemento alvo para evitar cursor de texto
+            setTimeout(() => {
+                if (document.activeElement) {
+                    document.activeElement.blur();
+                }
+            }, 100);
+        }
     });
 });
 
