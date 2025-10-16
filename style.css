@@ -46,6 +46,10 @@ body {
     top: 0;
     z-index: 1000;
     border-bottom: 1px solid rgba(12, 126, 146, 0.2);
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .header .container {
@@ -58,6 +62,10 @@ body {
     display: flex;
     align-items: center;
     gap: 12px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .logo-icon {
@@ -70,6 +78,10 @@ body {
     font-size: 24px;
     font-weight: 700;
     letter-spacing: 2px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .logo-light {
@@ -83,6 +95,10 @@ body {
 .nav {
     display: flex;
     gap: 30px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .nav a {
@@ -216,6 +232,10 @@ section *, .hero *, .how-to-use *, .footer * {
     height: 250px;
     margin: 0 auto 40px;
     position: relative;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
 }
 
 .hero-image::before {
@@ -229,6 +249,7 @@ section *, .hero *, .how-to-use *, .footer * {
     border-radius: 50%;
     animation: pulse 4s ease-in-out infinite;
     z-index: 0;
+    pointer-events: none;
 }
 
 .hero-image img {
@@ -239,6 +260,15 @@ section *, .hero *, .how-to-use *, .footer * {
     z-index: 1;
     filter: drop-shadow(0 0 10px rgba(12, 126, 146, 0.3));
     animation: float 6s ease-in-out infinite;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    pointer-events: none;
 }
 
 .hero-title {
@@ -306,6 +336,10 @@ section *, .hero *, .how-to-use *, .footer * {
     border: 1px solid rgba(12, 126, 146, 0.3);
     border-radius: 50px;
     transition: all 0.3s ease;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .badge:hover {
@@ -374,6 +408,10 @@ section *, .hero *, .how-to-use *, .footer * {
     text-align: center;
     transition: all 0.3s ease;
     cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
 }
 
 .file-upload:hover {
@@ -396,12 +434,20 @@ section *, .hero *, .how-to-use *, .footer * {
     font-size: 16px;
     font-weight: 600;
     color: var(--text-light);
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .file-name {
     font-size: 13px;
     color: rgba(255, 255, 255, 0.6);
     font-style: italic;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .file-input {
@@ -460,6 +506,10 @@ section *, .hero *, .how-to-use *, .footer * {
     justify-content: center;
     gap: 10px;
     transition: all 0.3s ease;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
 }
 
 .process-btn:hover {
@@ -556,6 +606,10 @@ section *, .hero *, .how-to-use *, .footer * {
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     opacity: 1;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 /* Animação desabilitada para melhor performance */
